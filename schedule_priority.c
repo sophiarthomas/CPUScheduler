@@ -4,13 +4,22 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <string.h>
 
 #include "task.h"
 #include "list.h"
 #include "cpu.h"
 #include "schedulers.h"
 
-void schedule_pri() {
+void add(char *name, int priority, int burst) {
+    Task *new_task = malloc(sizeof(Task));
+    new_task->name = strdup(name);
+    new_task->priority = priority; 
+    new_task->burst = burst; 
+    insert(&task_list, new_task); 
+}
+
+void schedule() {
     struct node *current = task_list;
 
     while (current != NULL) {
@@ -19,7 +28,7 @@ void schedule_pri() {
 
         // Find the task with the highest priority
         while (temp != NULL) {
-            if (temp->task->priority < highest_priority->task->priority) {
+            if (temp->task->priority > highest_priority->task->priority) {
                 highest_priority = temp;
             }
             temp = temp->next;

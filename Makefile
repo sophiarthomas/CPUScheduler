@@ -17,17 +17,17 @@ clean:
 	rm -rf priority
 
 
-rr: driver.o list.o CPU.o schedule_rr.o schedulers.o
-	$(CC) $(CFLAGS) -o rr driver.o schedule_rr.o list.o CPU.o schedulers.o
+rr: driver.o list.o CPU.o schedule_rr.o 
+	$(CC) $(CFLAGS) -o rr driver.o schedule_rr.o list.o CPU.o
 
 sjf: driver.o list.o CPU.o schedule_sjf.o
 	$(CC) $(CFLAGS) -o sjf driver.o schedule_sjf.o list.o CPU.o
 
-fcfs: driver.o list.o CPU.o schedule_fcfs.o schedulers.o
-	$(CC) $(CFLAGS) -o fcfs driver.o schedule_fcfs.o list.o CPU.o schedulers.o
+fcfs: driver.o list.o CPU.o schedule_fcfs.o 
+	$(CC) $(CFLAGS) -o fcfs driver.o schedule_fcfs.o list.o CPU.o 
 
-priority: driver.o list.o CPU.o schedule_priority.o schedulers.o
-	$(CC) $(CFLAGS) -o priority driver.o schedule_priority.o list.o CPU.o schedulers.o
+priority: driver.o list.o CPU.o schedule_priority.o 
+	$(CC) $(CFLAGS) -o priority driver.o schedule_priority.o list.o CPU.o 
 
 schedule_fcfs.o: schedule_fcfs.c
 	$(CC) $(CFLAGS) -c schedule_fcfs.c
@@ -49,6 +49,3 @@ list.o: list.c list.h
 
 CPU.o: CPU.c cpu.h
 	$(CC) $(CFLAGS) -c CPU.c
-
-schedulers.o: schedulers.c schedulers.h
-	$(CC) $(CFLAGS) -c schedulers.c

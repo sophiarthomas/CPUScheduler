@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
     fclose(in);
 
     // invoke the scheduler
-    traverse(task_list);
     schedule();
 
     return 0;

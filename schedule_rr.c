@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <string.h>
 
 #include "task.h"
 #include "list.h"
@@ -13,7 +14,15 @@
 
 int TIME_QUANTUM = 10; 
 
-void schedule_rr() {
+void add(char *name, int priority,int burst) {
+    Task *new_task = malloc(sizeof(Task));
+    new_task -> name = strdup(name);
+    new_task -> priority = priority; 
+    new_task -> burst = burst; 
+    insert(&task_list, new_task); 
+}
+
+void schedule() {
     struct node *current = task_list;
 
     while (current != NULL) {
