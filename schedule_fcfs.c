@@ -25,6 +25,10 @@ void schedule() {
     struct node *current= task_list; 
     while(current != NULL) {
         run(current -> task, current -> task -> burst);
-        current = current -> next;
+
+        delete(&task_list, current->task);
+
+        current = task_list;  // Start from the beginning of the list
     };
+    traverse(task_list);
 }
