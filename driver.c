@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
 
         // add the task to the scheduler's list of tasks
         add(name,priority,burst);
-
         free(temp);
+        
     }
 
     fclose(in);
