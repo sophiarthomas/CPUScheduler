@@ -24,22 +24,28 @@ void add(char *name, int priority,int burst) {
 
 void schedule() {
     struct node *current = task_list;
-
-    while (current != NULL) {
-        if (current->task->burst > TIME_QUANTUM) {
-            run(current->task, TIME_QUANTUM);
-            current->task->burst -= TIME_QUANTUM;
-        } else {
-            run(current->task, current->task->burst);
-            current->task->burst = 0;
-        }
-
-        if (current->task->burst > 0) {
-            // Move the task to the end of the list
-            delete(&task_list, current->task);
-            insert(&task_list, current->task);
-        }
-
-        current = current->next;
-    }
+    Task* temp; 
+    while (task_list != NULL) {
+        while (current != NULL) {
+            if (current->task->burst > TIME_QUANTUM) {
+                // Run the task for the TIME_QUANTUMA
+                run(current->task, TIME_QUANTUM);
+                // Update burst time 
+                current->task->burst -= TIME_QUANTUM;
+                temp = current->task;
+                // Move task to the end of the list
+                add(temp->name, temp->priority, temp->burst);
+                delete(&task_list, current->task);
+                // traverse(current);
+                // traverse(task_list);
+            } else {
+                // Run task for the remaining burst time 
+                run(current->task, current->task->burst);
+                current->task->burst = 0;
+                delete(&task_list, current->task); 
+            }    
+            current = current -> next;
+        }  
+        current = task_list;  
+    }   
 }
