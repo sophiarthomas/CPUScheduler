@@ -6,7 +6,7 @@
 # make priority - for priority scheduling
 
 
-CC=gcc
+CC=g++
 CFLAGS=-Wall
 
 clean:
