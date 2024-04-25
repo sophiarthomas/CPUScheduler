@@ -11,6 +11,8 @@
 #include "cpu.h"
 #include "schedulers.h"
 
+struct node *task_list; 
+
 void add(char *name, int priority, int burst) {
     Task *new_task = malloc(sizeof(Task));
     new_task->name = strdup(name);

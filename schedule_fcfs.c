@@ -10,6 +10,8 @@
 #include "cpu.h"
 #include "schedulers.h"
 
+struct node *task_list; 
+
 // add a task to the list 
 void add(char *name, int priority, int burst) {
     Task *new_task = malloc(sizeof(Task));
@@ -36,8 +38,6 @@ void add(char *name, int priority, int burst) {
 
 //Your code and design here
 void schedule() {
-    traverse(task_list);
-
     struct node *current= task_list; 
     while(current != NULL) {
         run(current -> task, current -> task -> burst);

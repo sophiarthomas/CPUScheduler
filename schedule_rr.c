@@ -13,6 +13,7 @@
 #include "schedulers.h"
 
 int TIME_QUANTUM = 10; 
+struct node *task_list; 
 
 void add(char *name, int priority,int burst) {
     Task *new_task = malloc(sizeof(Task));
