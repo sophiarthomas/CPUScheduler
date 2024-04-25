@@ -16,7 +16,21 @@ void add(char *name, int priority, int burst) {
     new_task->name = strdup(name);
     new_task->priority = priority; 
     new_task->burst = burst; 
-    insert(&task_list, new_task); 
+
+    // If the list is empty, make the new node the head
+    if (task_list == NULL) {
+        insert(&task_list, new_task);
+        return;
+    }
+
+    // Find the last node in the list
+    struct node *current = task_list;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+
+    // Insert the new node after the last node
+    insert(&(current->next), new_task);
 }
 
 void schedule() {
